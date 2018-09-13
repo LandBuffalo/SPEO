@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -q express
+#PBS -l walltime=01:00:00
+#PBS -l ncpus=64
+#PBS -l mem=128GB
+#PBS -l jobfs=100GB
+#PBS -l wd
+#PBS -j oe
+
+module load openmpi/1.10.2
+
+mpirun ./Scalable_EA -dim 10  -island_size 128 -total_runs 1-1 -max_base_FEs 1000000 -total_functions 23-30 -buffer_manage online -interval 100 -migration_size 1 -buffer_capacity 16 -migration_topology fullyConnect
